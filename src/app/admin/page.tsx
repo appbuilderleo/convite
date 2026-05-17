@@ -29,7 +29,7 @@ export default async function AdminPage() {
     <div style={{ padding: "4rem 6vw", minHeight: "100vh", background: "var(--black)", color: "var(--text-on-dark)" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "1.5rem", marginBottom: "3rem" }}>
           <div>
             <span style={{ fontFamily: "var(--font-title)", fontSize: "12px", letterSpacing: "0.4em", color: "var(--gold-dim)", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
               Painel de Controlo
@@ -38,7 +38,7 @@ export default async function AdminPage() {
               Gestão de Convidados
             </h1>
           </div>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/" style={{ color: "var(--gold)", fontFamily: "var(--font-title)", textDecoration: "none", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid var(--gold)", padding: "10px 20px" }}>
               Voltar ao Convite
             </Link>
