@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { adminLogin } from "../actions";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
@@ -75,6 +76,11 @@ export default function LoginForm() {
             {isPending ? "A verificar..." : "Entrar"}
           </button>
         </form>
+        <div style={{ marginTop: "2rem" }}>
+          <Link href="/" style={{ color: "var(--gold-dim)", fontFamily: "var(--font-title)", fontSize: "11px", letterSpacing: "0.1em", textDecoration: "none", textTransform: "uppercase" }}>
+            ← Voltar ao Convite
+          </Link>
+        </div>
       </div>
     </div>
   );

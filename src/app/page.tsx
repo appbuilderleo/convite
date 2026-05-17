@@ -63,35 +63,6 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  // Audio Auto-play on interaction
-  useEffect(() => {
-    const tryPlayAudio = async () => {
-      if (audioRef.current && !isPlaying && !userInteracted) {
-        try {
-          await audioRef.current.play();
-          setIsPlaying(true);
-          setUserInteracted(true);
-        } catch (err) {
-          // Autoplay prevented by browser
-        }
-      }
-    };
-
-    const handleInteraction = () => {
-      tryPlayAudio();
-      document.removeEventListener("click", handleInteraction);
-      document.removeEventListener("scroll", handleInteraction);
-    };
-
-    document.addEventListener("click", handleInteraction);
-    document.addEventListener("scroll", handleInteraction, { once: true });
-
-    return () => {
-      document.removeEventListener("click", handleInteraction);
-      document.removeEventListener("scroll", handleInteraction);
-    };
-  }, [isPlaying, userInteracted]);
-
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -100,7 +71,6 @@ export default function Home() {
         audioRef.current.play().catch(()=>{});
       }
       setIsPlaying(!isPlaying);
-      setUserInteracted(true);
     }
   };
 
@@ -157,7 +127,15 @@ export default function Home() {
       </nav>
 
       {/* ═══ AUDIO PLAYER ═══ */}
-      <audio ref={audioRef} src="/som.m4a" loop />
+      <audio 
+        ref={audioRef} 
+        src="/som.m4a" 
+        loop 
+        preload="auto" 
+        autoPlay 
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
       <button 
         onClick={toggleAudio}
         style={{
@@ -199,7 +177,7 @@ export default function Home() {
         <div className="hero-content">
           <p className="hero-date-badge">[ 14 de Setembro de 2025 ]</p>
           <h1 className="hero-names">
-            Template Noiva
+            Noiva
             <span className="hero-ampersand">&amp;</span>
             Paulo
           </h1>
@@ -242,7 +220,7 @@ export default function Home() {
           <p className="convite-texto reveal reveal-up d5">
             É com imensa alegria que convidam o(a) senhor(a) para a celebração
             do matrimónio dos seus filhos<br />
-            <span className="destaque">Template Noiva</span>
+            <span className="destaque">Noiva</span>
             {" "}&amp;{" "}
             <span className="destaque">Paulo</span>,<br />
             a realizar-se no dia{" "}
@@ -297,7 +275,7 @@ export default function Home() {
           Sua presença será uma honra para nós!
         </p>
         <span className="honra-assinatura reveal reveal-fade d2">
-          Com carinho, Template Noiva &amp; Paulo
+          Com carinho, Noiva &amp; Paulo
         </span>
         <GoldDivider />
       </div>
@@ -426,7 +404,7 @@ export default function Home() {
       {/* ═══ FOOTER ═══ */}
       <footer>
         <GoldDivider />
-        <p className="footer-names">Template Noiva &amp; Paulo</p>
+        <p className="footer-names">Noiva &amp; Paulo</p>
         <span className="footer-date">14 de Setembro de 2025 · Maputo</span>
         <GoldDivider />
       </footer>

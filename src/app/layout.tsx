@@ -38,11 +38,11 @@ const cinzelDecorative = Cinzel_Decorative({
 });
 
 export const metadata: Metadata = {
-  title: "Convite de Casamento | Template Noiva & Paulo",
+  title: "Convite de Casamento | Noiva & Paulo",
   description:
-    "Celebração do Sagrado Matrimónio de Template Noiva e Paulo — 14 de Setembro de 2025, Maputo.",
+    "Celebração do Sagrado Matrimónio de Noiva e Paulo — 14 de Setembro de 2025, Maputo.",
   openGraph: {
-    title: "Convite de Casamento | Template Noiva & Paulo",
+    title: "Convite de Casamento | Noiva & Paulo",
     description: "Junte-se a nós na celebração do nosso matrimónio.",
     type: "website",
   },
