@@ -33,6 +33,7 @@ export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [invitationOpened, setInvitationOpened] = useState(false);
 
   // Scroll effects
   useEffect(() => {
@@ -110,6 +111,48 @@ export default function Home() {
 
   return (
     <>
+      {!invitationOpened && (
+        <div style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 9999,
+          background: "var(--black)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <h1 style={{ fontFamily: "var(--font-display)", color: "var(--gold-light)", fontSize: "2.5rem", marginBottom: "0.5rem", fontWeight: "normal", textAlign: "center" }}>
+            Noiva <span style={{ color: "var(--gold-dim)" }}>&amp;</span> Paulo
+          </h1>
+          <p style={{ fontFamily: "var(--font-title)", fontSize: "11px", letterSpacing: "0.2em", color: "var(--gold-dim)", textTransform: "uppercase", marginBottom: "3rem", textAlign: "center" }}>
+            Convite de Casamento
+          </p>
+          <button 
+            onClick={() => {
+              if (audioRef.current) {
+                audioRef.current.play().catch(()=>{});
+              }
+              setInvitationOpened(true);
+            }}
+            style={{
+              background: "transparent",
+              border: "1px solid var(--gold)",
+              color: "var(--gold)",
+              padding: "15px 30px",
+              fontFamily: "var(--font-title)",
+              fontSize: "12px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+          >
+            Abrir Convite
+          </button>
+        </div>
+      )}
+
       {/* ═══ NAVEGAÇÃO ═══ */}
       <nav id="nav" className={navScrolled ? "scrolled" : ""}>
         <a href="#hero" className="nav-logo" onClick={(e) => handleSmoothScroll(e, "#hero")}>
