@@ -199,9 +199,9 @@ export default function Home() {
         <div className="hero-content">
           <p className="hero-date-badge">[ 14 de Setembro de 2025 ]</p>
           <h1 className="hero-names">
-            Mariana
+            Template Noiva
             <span className="hero-ampersand">&amp;</span>
-            António
+            Paulo
           </h1>
           <p className="hero-subtitle">Celebração do Sagrado Matrimónio</p>
         </div>
@@ -242,9 +242,9 @@ export default function Home() {
           <p className="convite-texto reveal reveal-up d5">
             É com imensa alegria que convidam o(a) senhor(a) para a celebração
             do matrimónio dos seus filhos<br />
-            <span className="destaque">Mariana Silva</span>
+            <span className="destaque">Template Noiva</span>
             {" "}&amp;{" "}
-            <span className="destaque">António Fonseca</span>,<br />
+            <span className="destaque">Paulo</span>,<br />
             a realizar-se no dia{" "}
             <span className="destaque">14 de Setembro de 2025</span>.
           </p>
@@ -297,7 +297,7 @@ export default function Home() {
           Sua presença será uma honra para nós!
         </p>
         <span className="honra-assinatura reveal reveal-fade d2">
-          Com carinho, Mariana &amp; António
+          Com carinho, Template Noiva &amp; Paulo
         </span>
         <GoldDivider />
       </div>
@@ -334,7 +334,7 @@ export default function Home() {
           <span className="pix-key">
             Chave M-Pesa: <strong>+258 84 000 0000</strong>
           </span>
-          <span className="pix-key">Titular: António Fonseca</span>
+          <span className="pix-key">Titular: Paulo</span>
           <button
             className="pix-copy-btn"
             onClick={handleCopyPix}
@@ -416,7 +416,7 @@ export default function Home() {
                 Aguardamos a sua presença com grande alegria!
               </p>
               <span style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "var(--gold)", display: "block", marginTop: "1.5rem" }}>
-                Mariana &amp; António
+                Template Noiva &amp; Paulo
               </span>
             </div>
           )}
@@ -426,7 +426,7 @@ export default function Home() {
       {/* ═══ FOOTER ═══ */}
       <footer>
         <GoldDivider />
-        <p className="footer-names">Mariana &amp; António</p>
+        <p className="footer-names">Template Noiva &amp; Paulo</p>
         <span className="footer-date">14 de Setembro de 2025 · Maputo</span>
         <GoldDivider />
       </footer>
