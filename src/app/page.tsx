@@ -123,7 +123,7 @@ export default function Home() {
           justifyContent: "center",
         }}>
           <h1 style={{ fontFamily: "var(--font-display)", color: "var(--gold-light)", fontSize: "2.5rem", marginBottom: "0.5rem", fontWeight: "normal", textAlign: "center" }}>
-            Noiva <span style={{ color: "var(--gold-dim)" }}>&amp;</span> Paulo
+            A Noiva <span style={{ color: "var(--gold-dim)" }}>&amp;</span> Paulo
           </h1>
           <p style={{ fontFamily: "var(--font-title)", fontSize: "11px", letterSpacing: "0.2em", color: "var(--gold-dim)", textTransform: "uppercase", marginBottom: "3rem", textAlign: "center" }}>
             Convite de Casamento
@@ -263,7 +263,7 @@ export default function Home() {
           <p className="convite-texto reveal reveal-up d5">
             É com imensa alegria que convidam o(a) senhor(a) para a celebração
             do matrimónio dos seus filhos<br />
-            <span className="destaque">Noiva</span>
+            <span className="destaque">A Noiva</span>
             {" "}&amp;{" "}
             <span className="destaque">Paulo</span>,<br />
             a realizar-se no dia{" "}
@@ -318,7 +318,7 @@ export default function Home() {
           Sua presença será uma honra para nós!
         </p>
         <span className="honra-assinatura reveal reveal-fade d2">
-          Com carinho, Noiva &amp; Paulo
+          Com carinho, A Noiva &amp; Paulo
         </span>
         <GoldDivider />
       </div>
@@ -437,7 +437,7 @@ export default function Home() {
                 Aguardamos a sua presença com grande alegria!
               </p>
               <span style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", color: "var(--gold)", display: "block", marginTop: "1.5rem" }}>
-                Template Noiva &amp; Paulo
+                A A Noiva &amp; Paulo
               </span>
             </div>
           )}
@@ -447,7 +447,7 @@ export default function Home() {
       {/* ═══ FOOTER ═══ */}
       <footer>
         <GoldDivider />
-        <p className="footer-names">Noiva &amp; Paulo</p>
+        <p className="footer-names">A Noiva &amp; Paulo</p>
         <span className="footer-date">14 de Setembro de 2025 · Maputo</span>
         <GoldDivider />
       </footer>
