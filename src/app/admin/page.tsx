@@ -1,9 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import Link from "next/link";
 import DeleteButton from "./DeleteButton";
 import { cookies } from "next/headers";
 import LoginForm from "./LoginForm";
-import { adminLogout } from "../actions";
+import AdminHeader from "./AdminHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -26,29 +25,9 @@ export default async function AdminPage() {
   const totalConfirmedPeople = confirmedGuests.reduce((acc, g) => acc + g.numberOfPeople, 0);
 
   return (
-    <div style={{ padding: "4rem 6vw", minHeight: "100vh", background: "var(--black)", color: "var(--text-on-dark)" }}>
+    <div className="admin-page-wrap" style={{ minHeight: "100vh", background: "var(--black)", color: "var(--text-on-dark)" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "1.5rem", marginBottom: "3rem" }}>
-          <div>
-            <span style={{ fontFamily: "var(--font-title)", fontSize: "12px", letterSpacing: "0.4em", color: "var(--gold-dim)", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
-              Painel de Controlo
-            </span>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", color: "var(--gold-light)", margin: 0 }}>
-              Gestão de Convidados
-            </h1>
-          </div>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <Link href="/" style={{ color: "var(--gold)", fontFamily: "var(--font-title)", textDecoration: "none", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid var(--gold)", padding: "10px 20px" }}>
-              Voltar ao Convite
-            </Link>
-            <form action={adminLogout}>
-              <button type="submit" style={{ background: "transparent", color: "#f44336", fontFamily: "var(--font-title)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid #f44336", padding: "10px 20px", cursor: "pointer" }}>
-                Terminar Sessão
-              </button>
-            </form>
-          </div>
-        </div>
+        <AdminHeader />
 
         {/* Dashboard Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.5rem", marginBottom: "4rem" }}>

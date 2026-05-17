@@ -812,6 +812,11 @@ footer {
   .nav-links.open a { padding: 0.85rem 0; font-size: 13px; opacity: 0.9; }
   .nav-toggle { display: flex; }
 
+  /* Corrigindo padding das secções no telemóvel para não serem tão grandes */
+  #versiculo, #convite, #cerimonia, .honra-block, #presentes, #confirmacao, footer {
+    padding: 4rem 1.5rem;
+  }
+
   .cerimonia-grid {
     grid-template-columns: 1fr;
     gap: 3rem 0;
@@ -820,6 +825,18 @@ footer {
   .form-row { grid-template-columns: 1fr; gap: 1.5rem; }
   .convite-card { padding: 3rem 1.5rem; }
   .hero-frame { inset: 16px; }
+
+  /* Admin Header Responsiveness */
+  .admin-page-wrap { padding: 2rem 1rem !important; }
+  .admin-nav-desktop { display: none !important; }
+  .admin-nav-mobile-toggle { display: flex !important; }
+}
+
+@media (min-width: 769px) {
+  .admin-nav-desktop { display: flex !important; }
+  .admin-nav-mobile-toggle { display: none !important; }
+  .admin-nav-mobile-menu { display: none !important; }
+  .admin-page-wrap { padding: 4rem 6vw !important; }
 }
 
 /* ═══════════════════════════════════
