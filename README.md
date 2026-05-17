@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💍 Convite de Casamento — Mariana & António
 
-## Getting Started
+Site de convite de casamento digital, construído com **Next.js 15**, **Prisma v5** e **CockroachDB**, hospedado na **Vercel**.
 
-First, run the development server:
+---
+
+## ✨ Funcionalidades
+
+- 🖤 Design elegante preto & dourado (fiel ao protótipo HTML original)
+- 📜 Secções: Hero, Versículo, Convite, Cerimónia, Lista de Presentes, RSVP
+- ✅ Confirmação de presença guardada em base de dados
+- 🎁 Seleção de presente pelo convidado (guardada junto com o RSVP)
+- 📱 Totalmente responsivo (mobile, tablet, desktop)
+- ⚡ Server Actions do Next.js para submissão de formulário
+- 🗄️ CockroachDB (PostgreSQL-compatível) via Prisma ORM
+
+---
+
+## 🛠️ Stack
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Frontend | Next.js 15 (App Router) + TypeScript |
+| Estilos | Vanilla CSS (extraído do design system original) |
+| ORM | Prisma v5 |
+| Base de Dados | CockroachDB (Serverless) |
+| Deploy | Vercel |
+| Fontes | Google Fonts: Cinzel Decorative, Cinzel, Cormorant Garamond, EB Garamond |
+
+---
+
+## 🚀 Como Executar Localmente
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/SEU_USUARIO/convite.git
+cd convite
+```
+
+### 2. Instalar dependências
+
+```bash
+npm install
+```
+
+### 3. Configurar variáveis de ambiente
+
+Copie `.env.example` para `.env` e preencha:
+
+```bash
+cp .env.example .env
+```
+
+```env
+DATABASE_URL="postgresql://convite:PASSWORD@host:26257/defaultdb?sslmode=verify-full"
+```
+
+### 4. Sincronizar a base de dados
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+### 5. Iniciar em desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ☁️ Deploy na Vercel
 
-## Learn More
+### 1. Push para GitHub
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git add .
+git commit -m "feat: convite de casamento digital"
+git push origin main
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Importar na Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Acesse [vercel.com](https://vercel.com) → **Add New Project**
+2. Importe o repositório GitHub
+3. Em **Environment Variables**, adicione:
+   - `DATABASE_URL` = sua connection string do CockroachDB
 
-## Deploy on Vercel
+4. Clique em **Deploy** — o `vercel.json` já configura o `prisma generate` antes do build.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🗄️ Modelo de Dados
+
+```prisma
+model Guest {
+  id             String   @id @default(cuid())
+  name           String           // Nome do convidado
+  phone          String?          // Telefone / WhatsApp
+  numberOfPeople Int    @default(1) // Nº de pessoas
+  attendance     String           // confirmed | declined | pending
+  message        String?          // Mensagem para os noivos
+  chosenGift     String?          // Presente escolhido da lista
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+convite/
+├── prisma/
+│   └── schema.prisma          # Modelo da base de dados
+├── src/
+│   ├── app/
+│   │   ├── actions.ts         # Server Action: submeter RSVP
+│   │   ├── globals.css        # Design system completo (preto & dourado)
+│   │   ├── layout.tsx         # Layout com fontes Google
+│   │   └── page.tsx           # Página principal (todas as secções)
+│   ├── lib/
+│   │   └── prisma.ts          # Singleton do Prisma Client
+│   └── generated/             # Gerado pelo prisma (ignorado no git)
+├── .env.example               # Template de variáveis de ambiente
+├── vercel.json                # Configuração de deploy na Vercel
+└── next.config.ts             # Configuração do Next.js
+```
+
+---
+
+## 🎨 Personalização
+
+Para personalizar o convite, edite `src/app/page.tsx`:
+
+- **Nomes**: `Mariana` e `António`
+- **Data**: `14 de Setembro de 2025`
+- **Local**: `Maputo, Moçambique`
+- **Versículo**: Secção `#versiculo`
+- **Cerimónia**: Horas e locais em `#cerimonia`
+- **Presentes**: Array `PRESENTES` no topo do ficheiro
+- **Chave M-Pesa**: Bloco `.pix-block`
+
+---
+
+*Feito com ❤️ para Mariana & António*
