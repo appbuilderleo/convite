@@ -30,6 +30,9 @@ export default function Home() {
   const [pixCopied, setPixCopied] = useState(false);
   const heroPhotoRef = useRef<HTMLDivElement>(null);
   const revealRefs = useRef<HTMLElement[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   // Scroll effects
   useEffect(() => {
@@ -59,6 +62,47 @@ export default function Home() {
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  // Audio Auto-play on interaction
+  useEffect(() => {
+    const tryPlayAudio = async () => {
+      if (audioRef.current && !isPlaying && !userInteracted) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+          setUserInteracted(true);
+        } catch (err) {
+          // Autoplay prevented by browser
+        }
+      }
+    };
+
+    const handleInteraction = () => {
+      tryPlayAudio();
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("scroll", handleInteraction);
+    };
+
+    document.addEventListener("click", handleInteraction);
+    document.addEventListener("scroll", handleInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("scroll", handleInteraction);
+    };
+  }, [isPlaying, userInteracted]);
+
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(()=>{});
+      }
+      setIsPlaying(!isPlaying);
+      setUserInteracted(true);
+    }
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -111,6 +155,39 @@ export default function Home() {
           <span></span><span></span><span></span>
         </div>
       </nav>
+
+      {/* ═══ AUDIO PLAYER ═══ */}
+      <audio ref={audioRef} src="/som.m4a" loop />
+      <button 
+        onClick={toggleAudio}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          zIndex: 100,
+          background: "rgba(10,10,10,0.8)",
+          border: "1px solid var(--gold)",
+          borderRadius: "50%",
+          width: "45px",
+          height: "45px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "var(--gold)",
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
+          fontSize: "1.2rem",
+          transition: "all 0.3s ease",
+          opacity: navScrolled ? 1 : 0.8,
+        }}
+        title={isPlaying ? "Pausar música" : "Tocar música"}
+      >
+        {isPlaying ? (
+          <span style={{ fontSize: "1.2rem" }}>⏸</span>
+        ) : (
+          <span style={{ fontSize: "1.5rem", marginLeft: "3px" }}>▶</span>
+        )}
+      </button>
 
       {/* ═══ HERO ═══ */}
       <section id="hero">
